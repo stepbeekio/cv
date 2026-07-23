@@ -1,17 +1,16 @@
-out := "out/CV.pdf"
-
 # Compile the CV to PDF
 build:
-    typst compile main.typ {{out}}
+    mkdir -p out
+    typst compile main.typ out/CV.pdf
 
 # Recompile on changes
 watch:
-    typst watch main.typ {{out}}
+    typst watch main.typ out/CV.pdf
 
 # Open the compiled PDF
 open: build
-    xdg-open {{out}}
+    xdg-open out/CV.pdf
 
 # Remove compiled output
 clean:
-    rm -f {{out}}
+    rm -f out/CV.pdf
