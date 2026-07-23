@@ -2,6 +2,8 @@
 
 CV/résumé, written in [Typst](https://typst.app), single file (`main.typ`).
 
+Built automatically by CI on every push to `trunk`. Download the latest PDF from the [latest release](https://github.com/stepbeekio/cv/releases/latest).
+
 ## Usage
 
 ```sh
