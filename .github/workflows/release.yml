@@ -1,0 +1,34 @@
+name: Build and release CV
+
+on:
+  push:
+    branches:
+      - trunk
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install typst
+        uses: typst-community/setup-typst@v5
+
+      - name: Install just
+        uses: extractions/setup-just@v4
+
+      - name: Build CV
+        run: just build
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: latest
+          name: Latest CV
+          body: Automatically built from ${{ github.sha }}
+          files: out/CV.pdf
+          make_latest: true
