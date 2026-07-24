@@ -1,10 +1,9 @@
-// Typst port of main.tex + simplecv.sty — single-file CV.
-// Theme color mirrors `\def\theme{black}` in main.tex — swap to recolor.
+// Single-file CV. Swap theme-color to recolor.
 #let theme-color = black
-#let color-text = rgb(26, 26, 26) // \definecolor{color-text}{gray}{0.10}
-#let color-detail = rgb(102, 102, 102) // \definecolor{color-detail}{gray}{0.40}
+#let color-text = rgb(26, 26, 26)
+#let color-detail = rgb(102, 102, 102)
 
-// Shorthand link helpers (\github, \email, \website, \linkedin)
+// Shorthand link helpers
 #let email(addr) = link("mailto:" + addr)[#addr]
 #let github(user) = link("https://github.com/" + user + "/")[github.com/#user]
 #let linkedin(user) = link("https://www.linkedin.com/in/" + user + "/")[#user]
@@ -24,56 +23,55 @@
   v(1.1em)
 }
 
-// \entrybig: title/location row, then role/date row (smaller), then optional body
-#let entry-big(title, location, role, date, body: none) = block(below: 0.85em)[
+// \entrybig: title/location row, then role/date row(s) (smaller), then optional body.
+// Pass extra-roles for promotions at the same company, e.g.
+// extra-roles: (([Senior SDE], [Jan 2022 -- Oct 2023]), ([SDE], [Aug 2020 -- Jan 2022]))
+#let entry-big(title, location, role, date, extra-roles: (), body: none) = block(below: 0.85em)[
   #grid(
     columns: (1fr, auto),
     [#strong(title)], [#location],
   )
-  #v(-0.35em)
-  #grid(
-    columns: (1fr, auto),
-    text(size: 9.5pt)[#role], text(size: 9.5pt)[#date],
-  )
+  #for (r, d) in ((role, date), ..extra-roles) [
+    #v(-0.35em)
+    #grid(
+      columns: (1fr, auto),
+      text(size: 9.5pt)[#r], text(size: 9.5pt)[#d],
+    )
+  ]
   #if body != none {
     v(0.3em)
     body
   }
 ]
 
-// Wraps the document body with page/text/heading styling (apply via `#show: simplecv`)
-#let simplecv(body) = {
-  set page(paper: "us-letter", margin: 1in)
-  set text(font: "New Computer Modern", size: 10.5pt, fill: color-text)
-  set par(justify: false, leading: 0.62em)
-  set list(indent: 1em, spacing: 0.55em, marker: [•])
+// Page/text/heading styling
+#set page(paper: "us-letter", margin: 1in)
+#set text(font: "New Computer Modern", size: 10.5pt, fill: color-text)
+#set par(justify: false, leading: 0.62em)
+#set list(indent: 1em, spacing: 0.55em, marker: [•])
 
-  show heading.where(level: 1): it => block(above: 1.1em, below: 0.6em)[
-    #text(size: 15pt, fill: theme-color)[#smallcaps(it.body)]
-    #v(-0.5em)
-    #line(length: 100%, stroke: 0.6pt + theme-color)
-  ]
-
-  body
-}
-
-#show: simplecv
+#show heading.where(level: 1): it => block(above: 1.1em, below: 0.6em)[
+  #text(size: 15pt, fill: theme-color)[#smallcaps(it.body)]
+  #v(-0.5em)
+  #line(length: 100%, stroke: 0.6pt + theme-color)
+]
 
 #heading-inline(
   "Stephen van Beek",
   "Principal Engineer",
   align(right)[
-    Email: #email("stephen@happyvalley.io") \
+    Email: #email("stephen.van.beek@hey.com") \
     LinkedIn: #linkedin("stepbeekio") \
-    GitHub: #github("stepbeekio") #github("HappyValleyIO") \
+    GitHub: #github("stepbeekio") \
   ],
 )
 
 = Experience
 
 #entry-big(
-  [*Santander Auto Software*], [Remote],
-  [SDE3], [October 2023 -- Present],
+  [*Openbank Auto*], [Remote],
+  [Principal Engineer], [June 2025 -- Present],
+  extra-roles: (([SDE3], [October 2023 -- June 2025]),),
   body: [
     - Established and led the development of core financial infrastructure. I designed and implemented comprehensive accounts receivable and debt collection systems, driving 10-15% of total revenue through improved collection processes. This allowed the business to reevaluate operational risk and allocate 5x more capital for expansion.
     - Launched and managed a strategic initiative to create a provisions and impairments credit risk system around IFRS 9, meeting critical European Banking Authority (EBA) requirements. This required a great deal of surprisingly complex domain modelling, and removed regulatory barriers to capital allocation, enabling business expansion.
