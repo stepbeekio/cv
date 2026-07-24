@@ -73,10 +73,10 @@
   [Principal Engineer], [June 2025 -- Present],
   extra-roles: (([SDE3], [October 2023 -- June 2025]),),
   body: [
-    - Established and led the development of core financial infrastructure. I designed and implemented comprehensive accounts receivable and debt collection systems, driving 10-15% of total revenue through improved collection processes. This allowed the business to reevaluate operational risk and allocate 5x more capital for expansion.
-    - Launched and managed a strategic initiative to create a provisions and impairments credit risk system around IFRS 9, meeting critical European Banking Authority (EBA) requirements. This required a great deal of surprisingly complex domain modelling, and removed regulatory barriers to capital allocation, enabling business expansion.
-    - Designed and implemented a global simulations system that streamlines testing of time-dependent processes, enabling teams to efficiently validate complex financial scenarios. This tool allows developers and domain experts to observe and verify multi-year workflows in a compressed timeframe (three years in under 20 minutes), unlocking true continuous deployment by eliminating manual QA in dev.
-    - Founded and actively led the organization's technical steering group, driving the evolution from our initial rapid-deployment architecture to robust, scalable design practices. As a principal contributor and reviewer, I guide engineering teams across the entire stack in implementing systems to the standard required of a core banking system.
+    - Pitched, built, and grew Openbank Auto's core finance function into a team, delivering bookkeeping systems that model partial payments, overpayments, fees, interest, and reimbursements -- reducing operational risk and driving 10-15% of revenue, which freed 5x more capital for expansion.
+    - Led the initiative to build a provisions and impairments credit risk system using IFRS 9's simplified approach for trade receivables, meeting EBA requirements and clearing the regulatory blocker to business expansion.
+    - Built a global simulations system compressing three years of financial workflow into under 20 minutes, letting developers and domain experts validate complex scenarios and eliminating manual QA to enable continuous deployment.
+    - Founded the technical steering group, driving the org's evolution from rapid-deployment architecture to scalable, core-banking-grade design practices. Now lead engineering teams across the stack as principal reviewer, holding systems to that standard.
   ],
 )
 
@@ -86,16 +86,16 @@
   body: [
     While primarily a software development role, I've also served as managing director responsible for negotiating contracts, pushing sales and directing the technical learning in the company. Projects include:
 
-    - Principal Engineer for #link("https://www.alfransi.com.sa/english/home")[Banque Saudi Fransi]'s neo-banking subsidiary. The bank had acquired a consultancy team and used Happy Valley IO for a year to correct complex technical blockers caused by a previous consultancy while mentoring the new perm team. In this time, I:
-      - discovered that a hand-rolled auth mechanism allowed JWT's from a different issuer to POST transaction requests between other accounts. I paired with various members of the team while reworking the system to use Spring Security to ensure that the knowledge of how the authN/authz of the system remained within the team.
-      - resolved the architectural issues blocking launch. While ostensibly motivated by DDD, the system was divided the microservices around entities rather than aggregates leading to inconsistent state (for instance, a credit transaction without a corresponding debit). I re-architected the system around transactional integrity and the organizational structure to fewer, fatter services that could be tested more easily and leverage database transactions to ensure correctness.
-      - introduced end-to-end testing that allowed automated integration tests using ISO-8583 messages to be written by the dev teams for the first time. This revealed many bugs that would have resulted in inappropriate card declines or even missing funds in production. Until that point, all testing around card transactions had been manual or relied heavily on mocks.
-      - at the request of the COO, I joined the infrastructure team to help resolve several issues with the Kubernetes cluster -- the most pressing being a 5% request failure rate and poor performance. After introducing some stress testing scripts with Vegeta, we discovered that the system would crash completely at 5 req/s. Through a small code change, and coaching the infrastructure team in how to run a JVM application in production I increased throughput to 100 req/s with max latency of 300ms. During this exercise, we cut the hardware costs of the cluster by 50%.
-      - to close out my time with the client, I built an on-call process with primary and secondary rotations, as well as opinionated monitoring infrastructure to ensure a smoother introduction to support for the team. In six months, the team transitioned from never having supported a production system to debugging the first friends & family production deployment of the system without support.
-    - built and launched Zeevo, a graph based content-creation platform with a Web3 integration to mint NFTs. After an initial prototype built in 2 days, the client asked to build a high-fidelity MVP. I used React Flow to build the graph-editor tool to construct sequences with conditional sequels.
-    - #underline[#link("http://www.bigupapp.com")[BigUp]] is a social media app focused on positive affirmation for teenagers that's recently launched in the UK. In under four months, I have led development of the entire technical stack for the app from the React Native app on iOS and android, through to the infrastructure-as-code that underpins the cloud-hosted spring boot & kotlin back-end. To enable rapid development, we've employed a devops-driven approach with multiple daily releases, high automated test coverage, and aggressive scope-hammering.
+    - Lead engineer for RMR, a US relocation company whose legacy suite ran on Windows Server 2000 and SQL Server 2000 with ActiveX protections disabled, and had already suffered ransomware attacks. From 2017, built new tariff software and rebuilt the suite into a modern, secure platform -- raising availability from 94% to 99.9% and cutting the outages, rework, and manual firefighting that had been eating into the business. These efficiency gains doubled revenue per employee.
+    - Principal Engineer for #link("https://www.alfransi.com.sa/english/home")[Banque Saudi Fransi]'s neo-banking subsidiary, for a year fixing technical blockers left by a previous consultancy and mentoring the incoming permanent team. In this time, I:
+      - found a hand-rolled auth mechanism that accepted JWT's from a different issuer to post transactions between other accounts; paired with the team to rebuild authN/authz on Spring Security, keeping the knowledge in-house.
+      - resolved the architectural issue blocking launch: microservices split around entities rather than DDD aggregates caused inconsistent state (e.g. credits without matching debits). Re-architected around transactional integrity into fewer, fatter services using database transactions to guarantee consistency.
+      - introduced end-to-end testing with real ISO-8583 messages, replacing manual and mock-heavy card transaction tests; caught bugs that would have caused wrongful declines or lost funds in production.
+      - at the COO's request, joined the infrastructure team to fix a Kubernetes cluster crashing at 5 req/s with a 5% failure rate. Vegeta stress tests isolated the cause; a small code fix plus coaching the team on running JVM in production raised throughput to 100 req/s at 300ms max latency -- while cutting hardware costs 50%.
+      - closed out the engagement by building an on-call process with primary/secondary rotations and monitoring infrastructure; within six months the team went from never having run a production system to independently debugging the first friends & family production deployment.
+    - #underline[#link("http://www.bigupapp.com")[BigUp]] -- led development of a social media app for teen positive affirmation across the full stack, from the React Native app (iOS/Android) through to the infrastructure-as-code underpinning a cloud-hosted Spring Boot/Kotlin back-end -- launching in the UK in under four months. Used a devops-driven approach (multiple daily releases, high automated test coverage, aggressive scope-cutting) to hit that pace.
 
-      While building BigUp I've contributed fixes to the #underline[#link("https://github.com/mrsked/mrsk")[MRSK]] project by 37signals that have enabled us to use IaaS instead of PaaS for our infrastructure, making the low margins of B2C social media viable.
+      Contributed fixes to the #underline[#link("https://github.com/mrsked/mrsk")[MRSK]] project by 37signals that let the team run on IaaS instead of PaaS, making the low margins of B2C social media viable.
   ],
 )
 
@@ -103,9 +103,9 @@
   [*Amazon.com*], [Edinburgh, UK],
   [SDE on the Dynamic Merchandising Team], [October 2015 -- August 2017],
   body: [
-    Led development of the system that rendered all recommendations widgets on the retail website. The service was built in akka with scala and a single request would fan out to tens or hundreds of requests to other services. I individually built the actor graph that backed the monadic attribute fetching API and owned all performance matters for the team. Through stress testing and CPU profiling, I improved performance to the point where a single instance of the service could process 20,000 TPS with p99 latency of 250ms.
+    Led development of the service rendering all recommendation widgets on the retail website -- built in Scala/Akka, fanning out to tens or hundreds of downstream requests per request. Built the actor graph backing its monadic attribute-fetching API and owned performance for the team; stress testing and CPU profiling took a single instance to 20,000 TPS at 250ms p99 latency.
 
-    As a part of this work, traversed many services belonging to other teams to fix the litany of bugs that blocked the publicly promised launch of Amazon Fresh in Germany and Japan and the open of the first in-person Fresh store in the USA.
+    Fixed bugs across other teams' services blocking the publicly promised launches of Amazon Fresh in Germany and Japan and the first in-person Fresh store in the US.
   ],
 )
 
@@ -113,9 +113,9 @@
   [*JPMorgan Chase*], [Glasgow, UK],
   [Software Developer on the Pyramid Position Service], [June 2014 -- October 2015],
   body: [
-    A distributed, Agile team across Glasgow and London with clients globally, the main function of the Pyramid Position Service is to serve up enriched position data for the Investment Bank's equities tech. My role involved full stack development - from web-based latency tracking and testing tools, to back-end performance and data quality work. We used Chronicle queues for IPC and spent a week working directly with Peter Lawrey on performance tuning the system with Chronicle.
+    Full-stack developer on the Pyramid Position Service, serving enriched position data to the Investment Bank's global equities tech from a distributed Agile team spanning Glasgow and London. Built web-based latency tracking and testing tools, and worked on back-end performance and data quality, including a week tuning Chronicle queues directly with Peter Lawrey.
 
-    I spend the vast majority of this role working on back-end java, with the high point being a distributed data server with a 99th latency percentile of 4ms, fanning out around 150,000 msg/sec (message size 512 bytes) to multiple clients over the network using a combination of RxJava and JeroMQ.
+    Built a distributed data server fanning out ~150,000 msg/sec (512-byte messages) to multiple clients over the network using RxJava and JeroMQ, with a p99 latency of 4ms.
   ],
 )
 
@@ -128,6 +128,4 @@
 
 = Everything else
 
-I regularly attend the gym and am a 4th Dan in shotokan karate -- traveling abroad several times a year to train.
-I play the guitar -- though not as well as I'd like -- and am an avid reader.
-I'm currently re-reading the Realm of the Elderlings by Robin Hobb before I inevitably re-read the Wheel of Time by Robert Jordan.
+I'm a 4th Dan in shotokan karate, training abroad several times a year, and play guitar and read avidly -- currently re-reading Robin Hobb's Realm of the Elderlings before the inevitable return to the Wheel of Time.
